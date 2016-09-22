@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.db.models import Count
 
-from .models import Bookcase
+from .models import Bookcase, Bookshelf
 
 def bookcase_list(request):
     bookcases = Bookcase.objects.annotate(shelf_count=Count('bookshelf')).all()
@@ -24,4 +24,12 @@ def bookcase_detail(request, id):
     return render(request, "bookcases/bookcase_detail.html", context)
 
 def bookshelf_detail(request, id):
-    return HttpResponse("Bookshelf {}".format(id))
+    bookshelf = get_object_or_404(Bookshelf, pk=id)
+    books = bookshelf.book_set.all()
+
+    context = {
+        "bookshelf": bookshelf,
+        "books": books,
+    }
+
+    return render(request, "bookcases/bookshelf_detail.html", context)

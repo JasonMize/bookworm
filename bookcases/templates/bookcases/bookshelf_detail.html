@@ -1,0 +1,30 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <h2>
+        {{bookshelf.shelf_label}}
+        <hr>
+    </h2>
+
+    {% if books %}
+        
+        <h3>
+            Books
+        </h3>
+        <hr>
+        <div class="row">
+            {% for book in books %}
+                <div class="col-md-4">
+                    <div class="thumbnail book-thumbnail">
+                        <img class="img-responsive book-cover" src="http://covers.openlibrary.org/b/isbn/9780385533225-M.jpg" alt="Book Cover">
+                        <div class="caption">
+                            <h4>
+                                {{book.title}}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock content %}
