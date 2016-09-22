@@ -24,7 +24,8 @@ def bookcase_detail(request, id):
     return render(request, "bookcases/bookcase_detail.html", context)
 
 def bookshelf_detail(request, id):
-    bookshelf = get_object_or_404(Bookshelf, pk=id)
+    query_set = Bookshelf.objects.annotate(book_count=Count('book'))
+    bookshelf = get_object_or_404(query_set, pk=id)
     books = bookshelf.book_set.all()
 
     context = {

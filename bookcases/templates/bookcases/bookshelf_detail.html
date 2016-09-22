@@ -5,7 +5,12 @@
         {{bookshelf.shelf_label}}
         <hr>
     </h2>
-
+    <p>
+        <em>
+            There {{bookshelf.book_count|pluralize:"is,are"}}
+             {{bookshelf.book_count}} book{{bookshelf.book_count|pluralize}} on this shelf.
+        </em>
+    </p>
     {% if books %}
         
         <h3>
@@ -15,14 +20,7 @@
         <div class="row">
             {% for book in books %}
                 <div class="col-md-4">
-                    <div class="thumbnail book-thumbnail">
-                        <img class="img-responsive book-cover" src="http://covers.openlibrary.org/b/isbn/9780385533225-M.jpg" alt="Book Cover">
-                        <div class="caption">
-                            <h4>
-                                {{book.title}}
-                            </h4>
-                        </div>
-                    </div>
+                    {% include "books/_book_thumbnail.html" %}
                 </div>
             {% endfor %}
         </div>
