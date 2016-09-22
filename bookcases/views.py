@@ -25,8 +25,10 @@ def bookcase_detail(request, id):
 
 def bookshelf_detail(request, id):
     query_set = Bookshelf.objects.annotate(book_count=Count('book'))
+    query_set = query_set.select_related('bookcase')
     bookshelf = get_object_or_404(query_set, pk=id)
-    books = bookshelf.book_set.all()
+    books = bookshelf.book_set.prefetch_related('authors').all()
+
 
     context = {
         "bookshelf": bookshelf,
