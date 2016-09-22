@@ -22,3 +22,6 @@ def bookcase_detail(request, id):
     }
 
     return render(request, "bookcases/bookcase_detail.html", context)
+
+def bookshelf_detail(request, id):
+    return HttpResponse("Bookshelf {}".format(id))

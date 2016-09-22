@@ -18,7 +18,9 @@
                             book{{bookshelf.book_count|pluralize}}
                         </span>
                     </div>
-                    {{bookshelf.shelf_label}}
+                    <a href="{{bookshelf.get_absolute_url}}">
+                        {{bookshelf.shelf_label}}
+                    </a>
                 </li>
             {% endfor %}
         </ul>
