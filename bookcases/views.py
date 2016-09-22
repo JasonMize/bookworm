@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.db.models import Count
+from django.contrib import messages
 
 from .models import Bookcase, Bookshelf
 from .forms import BookcaseForm
@@ -41,6 +42,7 @@ def bookcase_new(request):
         form = BookcaseForm(request.POST)
         if form.is_valid():
             bookcase = form.save()
+            messages.success(request, "Bookcase created!")
             return redirect("bookcases:bookcase_detail", id=bookcase.pk)
     else:
         form = BookcaseForm()
