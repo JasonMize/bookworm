@@ -53,6 +53,25 @@ def bookcase_new(request):
 
     return render(request, "bookcases/bookcase_edit.html", context)
 
+def bookcase_edit(request, id):
+    bookcase = get_object_or_404(Bookcase, pk=id)
+
+    if request.method == "POST":
+        form = BookcaseForm(request.POST, instance=bookcase)
+        if form.is_valid():
+            bookcase = form.save()
+            messages.success(request, "Bookcase updated!")
+            return redirect("bookcases:bookcase_detail", id=bookcase.pk)
+    else:
+        form = BookcaseForm(instance=bookcase)
+
+    context = {
+        "form": form,
+        "bookcase": bookcase,
+    }
+
+    return render(request, "bookcases/bookcase_edit.html", context)
+
 def bookshelf_detail(request, id):
     query_set = Bookshelf.objects.annotate(book_count=Count('book'))
     query_set = query_set.select_related('bookcase')
