@@ -12,11 +12,13 @@ class BookForm(BootstrapFormMixin, forms.ModelForm):
             'title',
             'description',
             'wikipedia_url',
+            'cover',
             'bookshelf',
             'authors',
             'genres',
         )
 
         widgets = {
-            'description': forms.Textarea(attrs={'cols': 80, 'rows': 5})
+            'description': forms.Textarea(attrs={'cols': 80, 'rows': 5}),
+            'genres': forms.CheckboxSelectMultiple(),
         }

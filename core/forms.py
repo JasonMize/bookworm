@@ -7,8 +7,8 @@ class BootstrapFormMixin(object):
         for field in self.fields.values():
             if (isinstance(field.widget, widgets.TextInput) or
                 isinstance(field.widget, widgets.Textarea) or
-                isinstance(field.widget, widgets.SelectMultiple) or
-                isinstance(field.widget, widgets.Select)):
+                type(field.widget) == widgets.Select or
+                type(field.widget) == widgets.SelectMultiple):
 
                 field.widget.attrs.update({
                     "class": "form-control"

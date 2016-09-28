@@ -1,6 +1,11 @@
+{% load staticfiles %}
 <div class="thumbnail book-thumbnail">
     <a href="{{book.get_absolute_url}}">
-        <img class="img-responsive book-cover" src="http://covers.openlibrary.org/b/isbn/9780385533225-M.jpg" alt="Book Cover">
+        {% if book.cover %}
+            <img class="img-responsive book-cover" style="height: 300px;" src="{{book.cover.url}}" alt="Book Cover">
+        {% else %}
+            <img class="img-responsive book-cover" style="height: 300px;" src="{% static 'books/default_cover.jpg' %}" alt="Book Cover">
+        {% endif %}
     </a>
     <div class="caption">
         <h4>

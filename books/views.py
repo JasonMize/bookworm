@@ -79,7 +79,7 @@ def book_new(request, bookshelf=None):
         )
 
     if request.method == "POST":
-        form = BookForm(request.POST, **form_kwargs)
+        form = BookForm(request.POST, request.FILES, **form_kwargs)
 
         if form.is_valid():
             book = form.save()
@@ -115,7 +115,8 @@ def book_edit(request, id):
         )
 
     if request.method == "POST":
-        form = BookForm(request.POST, instance=book)
+        print(request.FILES)
+        form = BookForm(request.POST, request.FILES, instance=book)
 
         if form.is_valid():
             book = form.save()
