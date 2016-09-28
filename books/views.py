@@ -5,7 +5,7 @@ from django.db.models import Q
 from .models import Book, Author
 
 def book_list(request):
-    books = Book.objects.all()
+    books = Book.objects.prefetch_related('authors').all()
 
     breadcrumbs = (
         ("Books", ),
