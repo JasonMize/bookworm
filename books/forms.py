@@ -11,6 +11,7 @@ class BookForm(BootstrapFormMixin, forms.ModelForm):
         fields = (
             'title',
             'wikipedia_url',
+            'cover',
             'bookshelf',
             'authors',
             'genres',
