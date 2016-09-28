@@ -83,6 +83,15 @@ def book_new(request, bookshelf=None):
 
         if form.is_valid():
             book = form.save()
+            authors_for_book = []
+            for author_name in form.cleaned_data['author_names']:
+                author, created = Author.objects.get_or_create(name=author_name)
+                authors_for_book.append(author)
+
+            if len(authors_for_book) > 0:
+                book.authors.clear()
+                book.authors.add(*authors_for_book)
+
             messages.success(request, "Book Saved!")
             return redirect("books:book_detail", id=book.pk)
     else:
@@ -119,6 +128,15 @@ def book_edit(request, id):
 
         if form.is_valid():
             book = form.save()
+            authors_for_book = []
+            for author_name in form.cleaned_data['author_names']:
+                author, created = Author.objects.get_or_create(name=author_name)
+                authors_for_book.append(author)
+
+            if len(authors_for_book) > 0:
+                book.authors.clear()
+                book.authors.add(*authors_for_book)
+
             messages.success(request, "Book Saved!")
             return redirect("books:book_detail", id=book.pk)
     else:
