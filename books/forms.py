@@ -15,3 +15,7 @@ class BookForm(BootstrapFormMixin, forms.ModelForm):
             'authors',
             'genres',
         )
+
+        widgets = {
+            'genres': forms.CheckboxSelectMultiple(),
+        }
