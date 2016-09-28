@@ -24,6 +24,17 @@ class Book(models.Model):
     def get_absolute_url(self):
         return reverse("books:book_detail", args=[self.pk])
 
+    def update_authors(self, author_names):
+        authors_for_book = []
+        for author_name in author_names:
+            author, created = Author.objects.get_or_create(name=author_name)
+            authors_for_book.append(author)
+
+        if len(authors_for_book) > 0:
+            self.authors.clear()
+            self.authors.add(*authors_for_book)
+
+
 
 class Author(models.Model):
     name = models.CharField(max_length=200)
