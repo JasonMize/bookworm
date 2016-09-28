@@ -10,8 +10,13 @@ class BookForm(BootstrapFormMixin, forms.ModelForm):
 
         fields = (
             'title',
+            'description',
             'wikipedia_url',
             'bookshelf',
             'authors',
             'genres',
         )
+
+        widgets = {
+            'description': forms.Textarea(attrs={'cols': 80, 'rows': 5})
+        }

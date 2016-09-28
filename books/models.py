@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
+    description = models.CharField(max_length=500, blank=True)
     wikipedia_url = models.URLField(blank=True)
     date_added = models.DateTimeField(
         help_text="The date the book was added to a shelf",
