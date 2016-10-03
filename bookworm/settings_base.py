@@ -56,9 +56,6 @@ INSTALLED_APPS = (
     'books',
 )
 
-if DEBUG:
-    INSTALLED_APPS += ('debug_toolbar',)
-
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
