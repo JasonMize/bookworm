@@ -25,7 +25,6 @@ class BookSerializer(serializers.ModelSerializer):
             'genres',
             'authors',
         )
-        depth=1
 
     def create(self, validated_data):
         authors_data = validated_data.pop('authors')
