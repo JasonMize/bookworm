@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^bookcases/', include('bookcases.urls', namespace='bookcases')),
     url(r'^books/', include('books.urls', namespace='books')),
     url(r'^accounts/', include('accounts.urls')),
+    url(r'^api/', include('api.urls')),
     url(r'^', include('core.urls', namespace='core'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
