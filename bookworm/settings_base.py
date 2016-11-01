@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'explorer',
     'core',
     'accounts',
     'bookcases',
@@ -108,6 +109,9 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = reverse_lazy('books:book_list')
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_URL = reverse_lazy('logout')
+
+EXPLORER_SQL_BLACKLIST = []
+EXPLORER_SCHEMA_EXCLUDE_APPS = []
 
 
 # Static files (CSS, JavaScript, Images)
